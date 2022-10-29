@@ -1,0 +1,45 @@
+<?php
+
+
+namespace Todo_It\Helpers;
+
+
+class Template
+{
+	public static function loadTemplate( string $template_name )
+	{
+		$template_file_name = self::checkTemplateName($template_name);
+
+		if (gettype($template_file_name) != "boolean" && self::templateExists($template_file_name)) {
+			return require_once plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name";
+		}
+	}
+
+	protected static function checkTemplateName(string $template_name) {
+		if (strpos($template_name, '/')) {
+			return false;
+		}
+
+		$template_file_suffix = ".php";
+
+		//@todo In PHP version 8.0.0 use str_ends_with() instead.
+		$template_file_name = ( ( strlen( $template_name ) - ( strpos( $template_name, $template_file_suffix ) ) ) == 4
+			? $template_name
+			: $template_name . $template_file_suffix );
+
+
+
+		$template_file_name = untrailingslashit( $template_file_name );
+
+		return $template_file_name;
+	}
+
+	protected static function templateExists(string $template_file_name)
+	{
+		if ( ! file_exists( plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name" ) ) {
+			return false;
+		}
+
+		return true;
+	}
+}

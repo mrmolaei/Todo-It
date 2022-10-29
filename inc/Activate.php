@@ -3,7 +3,7 @@
  * @package Myplygun
  */
 
-namespace Inc;
+namespace Todo_It;
 
 
 class Activate
