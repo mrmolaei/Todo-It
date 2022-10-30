@@ -3,9 +3,17 @@
 
 namespace Todo_It\Helpers;
 
-
+/**
+ * Class Template
+ * @package Todo_It\Helpers
+ */
 class Template
 {
+	/**
+	 * @param string $template_name
+	 *
+	 * @return void
+	 */
 	public static function loadTemplate( string $template_name )
 	{
 		$template_file_name = self::checkTemplateName($template_name);
@@ -15,6 +23,11 @@ class Template
 		}
 	}
 
+	/**
+	 * @param string $template_name
+	 *
+	 * @return false|string
+	 */
 	protected static function checkTemplateName(string $template_name) {
 		if (strpos($template_name, '/')) {
 			return false;
@@ -34,6 +47,11 @@ class Template
 		return $template_file_name;
 	}
 
+	/**
+	 * @param string $template_file_name
+	 *
+	 * @return bool
+	 */
 	protected static function templateExists(string $template_file_name)
 	{
 		if ( ! file_exists( plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name" ) ) {
