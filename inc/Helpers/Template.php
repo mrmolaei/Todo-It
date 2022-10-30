@@ -19,7 +19,7 @@ class Template
 		$template_file_name = self::checkTemplateName($template_name);
 
 		if (gettype($template_file_name) != "boolean" && self::templateExists($template_file_name)) {
-			return require_once plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name";
+			require_once plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name";
 		}
 	}
 
@@ -40,8 +40,6 @@ class Template
 			? $template_name
 			: $template_name . $template_file_suffix );
 
-
-
 		$template_file_name = untrailingslashit( $template_file_name );
 
 		return $template_file_name;
@@ -54,10 +52,6 @@ class Template
 	 */
 	protected static function templateExists(string $template_file_name)
 	{
-		if ( ! file_exists( plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name" ) ) {
-			return false;
-		}
-
-		return true;
+		return ( file_exists( plugin_dir_path( dirname( __FILE__, 2 ) ) . "templates/$template_file_name" ) );
 	}
 }

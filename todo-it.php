@@ -22,16 +22,12 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 
 define( 'PLUGIN_CLASS', 'TodoIt' );
 
-use Todo_It\TodoIt;
-
-
-if ( class_exists( 'Todo_It\\TodoIt' ) ) {
-	$todo_it_instance = new TodoIt();
-	$todo_it_instance->register();
+if (class_exists('Todo_It\\TodoIt')) {
+	Todo_It\TodoIt::register_services();
 }
 
-register_activation_hook( __FILE__, array( $todo_it_instance, 'activate' ) );
+//register_activation_hook( __FILE__, array( $todo_it_instance, 'activate' ) );
 //
-register_deactivation_hook( __FILE__, array( $todo_it_instance, 'deactivate' ) );
+//register_deactivation_hook( __FILE__, array( $todo_it_instance, 'deactivate' ) );
 //
 //register_uninstall_hook( __FILE__, array( PLUGIN_CLASS, 'uninstall' ) );
