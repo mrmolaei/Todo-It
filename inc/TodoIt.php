@@ -6,6 +6,7 @@ namespace Todo_It;
 use Todo_It\Activate;
 use Todo_It\Deactivate;
 use Todo_It\Helpers\Template;
+use Todo_It\Helpers\page;
 
 class TodoIt
 {
@@ -34,10 +35,31 @@ class TodoIt
 
 	function addAdminPages()
 	{
-		add_menu_page( __( 'Todo It', 'my-plugin' ), __( 'Todo It', 'my-plugin' ), 'manage_options', 'my_plugin', array(
-			$this,
-			'adminIndex'
-		), 'dashicons-yes-alt', null );
+		$option_page = new Page();
+		$option_page_params = array(
+			'page_title' => __( 'Todo It' ),
+			'menu_title' => __( 'Todo It' ),
+			'capability' => 'manage_options',
+			'menu_slug'  => 'todo_it',
+			'callback'   => function () {
+				echo "<h1>Todo It</h1>";
+			},
+			'icon_url'   => 'dashicons-yes-alt',
+			'position'   => null,
+		);
+		$option_subpage_params = array(
+			'page_title' => __( 'Settings' ),
+			'menu_title' => __( 'Settings' ),
+			'capability' => 'manage_options',
+			'menu_slug'  => 'todo_it_settings',
+			'callback'   => function () {
+				echo "<h1>Settings</h1>";
+			},
+			'position'   => null,
+			'parent_slug' => 'todo_it'
+		);
+
+		$option_page->set($option_page_params)->addPage()->set($option_subpage_params)->addSubPage();
 	}
 
 	function adminIndex()
