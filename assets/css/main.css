@@ -60,6 +60,12 @@
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--todo-it-primary-color);
   border: 0.125rem solid #000;
   outline: none;
+  color: #000;
+}
+.todo-it input:not([type=checkbox]):not([type=radio]):hover,
+.todo-it textarea:hover,
+.todo-it select:hover {
+  color: #000;
 }
 .todo-it [type=checkbox],
 .todo-it [type=radio] {

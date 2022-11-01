@@ -20,6 +20,11 @@
 
     &:focus {
       @include focusable-with-border;
+      color: $black-color;
+    }
+
+    &:hover {
+      color: $black-color;
     }
   }
 
