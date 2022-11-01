@@ -1,0 +1,28 @@
+{
+  "name": "todo-it",
+  "version": "1.0.0",
+  "description": "A very simple WordPress todo plugin.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmolaei/todo-it.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrmolaei/todo-it/issues"
+  },
+  "homepage": "https://github.com/mrmolaei/todo-it#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.55.0"
+  }
+}

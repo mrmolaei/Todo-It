@@ -40,27 +40,6 @@ class TodoIt extends BaseClass
 		return new $class;
 	}
 
-	function register()
-	{
-
-	}
-
-	function settingsLink( $links )
-	{
-		$settings_link = '<a href="admin.php?page=my_plugin">Settings</a>';
-		array_push($links, $settings_link);
-		return $links;
-	}
-
-	function adminIndex()
-	{
-		Template::loadTemplate('admin');
-	}
-
-	function enqueue()
-	{
-		wp_enqueue_style( 'my-plugin-handler-style', plugins_url( '/assets/mystyles.css', __FILE__ ) );
-	}
 
 	function activate() {
 		Activate::activate();

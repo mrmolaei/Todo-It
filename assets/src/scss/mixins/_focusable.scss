@@ -1,0 +1,10 @@
+@mixin focusable {
+  box-shadow: 0 0 0 2px transparent,0 0 0 4px $primary-color;
+  outline: none;
+}
+
+@mixin focusable-with-border {
+  box-shadow: 0 0 0 2px #fff,0 0 0 4px $primary-color;
+  border: rem(2px) solid $black-color;
+  outline: none;
+}

@@ -1,0 +1,66 @@
+.todo-it {
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    transition: $global-transition;
+    width: 100%;
+    max-width: rem(400px);
+    padding: rem(12px 16px);
+    @include high-contrast;
+    border-radius: 0;
+    line-height: 1.2;
+    font-size: rem(16px);
+    font-weight: 500;
+
+    &::placeholder {
+      color: $gray-color;
+      opacity: 1;
+    }
+
+    &:focus {
+      @include focusable-with-border;
+    }
+  }
+
+  [type="checkbox"],
+  [type="radio"] {
+    @include high-contrast;
+    transition: $global-transition;
+    width: rem(20px);
+    height: rem(20px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:checked::before {
+      margin: 0;
+      content: '';
+      width: rem(12px);
+      height: rem(12px);
+      background-color: $black-color;
+    }
+
+    &:focus {
+      @include focusable-with-border;
+    }
+  }
+
+  [type="checkbox"] {
+    border-radius: 0;
+  }
+
+  input[type="submit"] {
+    background-color: $black-color !important;
+    color: $white-color;
+    width: auto !important;
+
+    &:hover {
+      background-color: $primary-color !important;
+    }
+  }
+
+  label {
+    color: $black-color;
+  }
+}

@@ -1,0 +1,59 @@
+.c-tabs {
+  @include high-contrast;
+}
+
+.c-tabs__nav__list {
+  display: flex;
+  margin: 0;
+  border-bottom: rem(2px) solid $black-color;
+}
+
+.c-tabs__nav__item {
+  margin: 0;
+}
+
+.c-tabs__link.is-active {
+  background: $black-color;
+  color: $white-color;
+
+  &:focus {
+    color: $white-color;
+  }
+}
+
+.c-tabs__link {
+  color: #000;
+  padding: rem(15px 30px);
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  border-right: 2px solid $black-color;
+
+  &:hover {
+    background-color: $gray-color;
+    color: $white-color;
+  }
+
+  &:focus {
+    @include focusable;
+    color: $black-color;
+  }
+
+  &:focus:hover {
+    color: $white-color;
+  }
+}
+
+
+.c-tabs__pane {
+  background: #fff;
+}
+
+.c-tabs__pane__tab {
+  display: none;
+  padding: 18px;
+}
+
+.c-tabs__pane__tab.is-active {
+  display: block;
+}

@@ -1,0 +1,4 @@
+@mixin high-contrast {
+  background-color: $white-color;
+  border: rem(2px) solid $black-color;
+}

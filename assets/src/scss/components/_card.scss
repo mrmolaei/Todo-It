@@ -1,0 +1,7 @@
+.c-card {
+  @include high-contrast;
+  padding: rem(12px);
+  box-shadow: 6px 6px 0 -2px $black-color;
+  flex: 1 0 0;
+  font-weight: 500;
+}
