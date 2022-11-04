@@ -37,7 +37,7 @@
 .todo-it input:not([type=checkbox]):not([type=radio]),
 .todo-it textarea,
 .todo-it select {
-  transition: 0.15s;
+  transition: 0s;
   width: 100%;
   max-width: 25rem;
   padding: 0.75rem 1rem;
@@ -71,7 +71,7 @@
 .todo-it [type=radio] {
   background-color: #fff;
   border: 0.125rem solid #000;
-  transition: 0.15s;
+  transition: 0s;
   width: 1.25rem;
   height: 1.25rem;
   display: inline-flex;
@@ -92,6 +92,11 @@
   border: 0.125rem solid #000;
   outline: none;
 }
+.todo-it [type=checkbox]:disabled,
+.todo-it [type=radio]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .todo-it [type=checkbox] {
   border-radius: 0;
 }
@@ -110,6 +115,10 @@
 .todo-it label {
   color: #000;
   font-weight: 500;
+}
+.todo-it label.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .todo-it {
@@ -234,7 +243,7 @@
   display: inline-block;
   text-align: center;
   cursor: pointer;
-  transition: 0.15s;
+  transition: 0s;
   font-weight: 500;
 }
 .todo-it .c-btn:hover {
@@ -309,15 +318,25 @@
 
 .c-tabs__pane {
   background: #fff;
+  min-height: 80vh;
 }
 
 .c-tabs__pane__tab {
+  opacity: 0;
+  visibility: hidden;
+  padding: 1.125rem;
+  transition: 0s;
   display: none;
-  padding: 18px;
 }
 
 .c-tabs__pane__tab.is-active {
+  opacity: 1;
+  visibility: visible;
   display: block;
+}
+
+.c-tabs--no-border {
+  border: none;
 }
 
 .todoit-plugin-page .notice {
@@ -362,6 +381,10 @@
 .o-spacer {
   display: block;
   padding: 0.5rem 0;
+}
+
+.o-spacer--2x {
+  padding: 0.75rem 0;
 }
 
 .o-wrap {

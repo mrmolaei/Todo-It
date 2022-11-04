@@ -47,13 +47,23 @@
 
 .c-tabs__pane {
   background: #fff;
+  min-height: 80vh;
 }
 
 .c-tabs__pane__tab {
+  opacity: 0;
+  visibility: hidden;
+  padding: rem(18px);
+  transition: $global-transition;
   display: none;
-  padding: 18px;
 }
 
 .c-tabs__pane__tab.is-active {
+  opacity: 1;
+  visibility: visible;
   display: block;
+}
+
+.c-tabs--no-border {
+  border: none;
 }

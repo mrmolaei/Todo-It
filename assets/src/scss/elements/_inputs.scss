@@ -49,6 +49,11 @@
     &:focus {
       @include focusable-with-border;
     }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 
   [type="checkbox"] {
@@ -73,5 +78,10 @@
   label {
     color: $black-color;
     font-weight: 500;
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
   }
 }
