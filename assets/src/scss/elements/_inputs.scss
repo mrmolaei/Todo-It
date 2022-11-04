@@ -62,10 +62,16 @@
 
     &:hover {
       background-color: $primary-color !important;
+      color: $white-color !important;
+    }
+
+    &:focus {
+      color: $white-color !important;
     }
   }
 
   label {
     color: $black-color;
+    font-weight: 500;
   }
 }

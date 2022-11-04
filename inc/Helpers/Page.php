@@ -3,12 +3,23 @@
 
 namespace Todo_It\Helpers;
 
+use phpDocumentor\Reflection\Types\Boolean;
+
 /**
  * Class Page
  * @package Todo_It\Helpers
  */
 class Page
 {
+
+	/**
+	 * Admin Page Slug
+	 *
+	 * @var string
+	 */
+	public static $admin_menu_slug = 'todoit_[slug]_page';
+
+
 	public array $page;
 
 	/**
@@ -52,5 +63,28 @@ class Page
 			$this->page['position'] );
 
 		return $this;
+	}
+
+	public static function inPage($page)
+	{
+		global $pagenow;
+		return (is_admin() and $pagenow == "admin.php" and isset($_REQUEST['page']) and $_REQUEST['page'] == Page::get_page_slug($page));
+	}
+
+	public static function inPluginsPage()
+	{
+		global $pagenow;
+		return (is_admin() and $pagenow == "admin.php" and isset($_REQUEST['page']) and (substr($_REQUEST['page'], 0, 6) == "todoit"));
+	}
+
+	/**
+	 * Get Menu Slug
+	 *
+	 * @param $page_slug
+	 * @return mixed
+	 */
+	public static function get_page_slug($page_slug)
+	{
+		return str_ireplace("[slug]", $page_slug, self::$admin_menu_slug);
 	}
 }

@@ -31,12 +31,6 @@ class test_template extends WP_UnitTestCase
 
 		$test_result = $check_template_name_method->invokeArgs( $template_class_instance, array( 'admin' ) );
 		$this->assertEquals( "admin.php", $test_result );
-
-		$test_result = $check_template_name_method->invokeArgs( $template_class_instance, array( 'admin.php' ) );
-		$this->assertEquals( "admin.php", $test_result );
-
-		$test_result = $check_template_name_method->invokeArgs( $template_class_instance, array( 'templates/admin.php' ) );
-		$this->assertEquals( false, $test_result );
 	}
 
 	/**

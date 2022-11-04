@@ -23,6 +23,10 @@ class Settings
 
 	public function registerSetting() : void
 	{
-		register_setting( $this->setting['option_group'], $this->setting['option_name'], $this->setting['args'] );
+		register_setting( $this->setting['option_group'], $this->setting['option_name'], $this->setting['callback'] );
+	}
+
+	public function registerSection() {
+
 	}
 }

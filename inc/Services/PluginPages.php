@@ -22,7 +22,7 @@ class PluginPages
 			'page_title' => __( 'Todo It' ),
 			'menu_title' => __( 'Todo It' ),
 			'capability' => 'manage_options',
-			'menu_slug'  => 'todo_it',
+			'menu_slug'  => 'todoit',
 			'callback'   => function () {},
 			'icon_url'   => 'dashicons-yes-alt',
 			'position'   => 25,
@@ -32,11 +32,11 @@ class PluginPages
 	private function todoListPageArgs()
 	{
 		$this->todoList = [
-			'parent_slug' => 'todo_it',
+			'parent_slug' => 'todoit',
 			'page_title' => __( 'Todo List' ),
 			'menu_title' => __( 'Todo List' ),
 			'capability' => 'manage_options',
-			'menu_slug'  => 'todo_it',
+			'menu_slug'  => 'todoit',
 			'callback'   => function () {
 				Template::loadTemplate('admin');
 			},
@@ -47,13 +47,13 @@ class PluginPages
 	private function optionsPageArgs()
 	{
 		$this->options = [
-			'parent_slug' => 'todo_it',
+			'parent_slug' => 'todoit',
 			'page_title' => __( 'Options' ),
 			'menu_title' => __( 'Options' ),
 			'capability' => 'manage_options',
-			'menu_slug'  => 'todo_it_options',
+			'menu_slug'  => 'todoit_options_page',
 			'callback'   => function () {
-				Template::loadTemplate('options');
+				Template::loadTemplate('options/general.php');
 			},
 			'position'   => 2,
 		];
@@ -70,7 +70,16 @@ class PluginPages
 		$this->pageHelper->set($this->options)->addSubPage();
 	}
 
+	public function bodyClasses ( $classes ) {
+		if ( Page::inPluginsPage() ) {
+			$classes .= ' todoit-plugin-page';
+		}
+
+		return $classes;
+	}
+
 	public function register() {
 		add_action('admin_menu', [$this, 'addPages']);
+		add_filter( 'admin_body_class', [$this, 'bodyClasses']);
 	}
 }

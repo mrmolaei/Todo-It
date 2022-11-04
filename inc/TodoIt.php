@@ -17,7 +17,8 @@ class TodoIt extends BaseClass
 		return [
 			Services\PluginPages::class,
 			Services\SettingsLink::class,
-			Services\Assets::class
+			Services\Assets::class,
+			Services\Options::class
 		];
 	}
 
@@ -41,11 +42,13 @@ class TodoIt extends BaseClass
 	}
 
 
-	function activate() {
+	function activate()
+	{
 		Activate::activate();
 	}
 
-	function deactivate() {
+	function deactivate()
+	{
 		Deactivate::deactivate();
 	}
 }

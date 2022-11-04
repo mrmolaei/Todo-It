@@ -37,14 +37,14 @@ class test_settings extends WP_UnitTestCase
 				'real_world_data' => [
 					'option_group' => 'todoit_options',
 					'option_name'  => 'general_settings',
-					'args'         => array()
+					'callback'         => array()
 				]
 			],
 			[
 				'test_data' => [
 					'option_group' => 'todoit_options',
 					'option_name'  => 'general_settings',
-					'args'         => array()
+					'callback'         => array()
 				]
 			]
 		];

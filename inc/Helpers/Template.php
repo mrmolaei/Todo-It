@@ -29,18 +29,12 @@ class Template
 	 * @return false|string
 	 */
 	protected static function checkTemplateName(string $template_name) {
-		if (strpos($template_name, '/')) {
-			return false;
-		}
-
 		$template_file_suffix = ".php";
 
 		//@todo In PHP version 8.0.0 use str_ends_with() instead.
 		$template_file_name = ( ( strlen( $template_name ) - ( strpos( $template_name, $template_file_suffix ) ) ) == 4
 			? $template_name
 			: $template_name . $template_file_suffix );
-
-		$template_file_name = untrailingslashit( $template_file_name );
 
 		return $template_file_name;
 	}
