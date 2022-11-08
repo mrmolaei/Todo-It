@@ -247,7 +247,7 @@
   font-weight: 500;
 }
 .todo-it .c-btn:hover {
-  background-color: #333;
+  background-color: var(--todo-it-primary-color);
 }
 .todo-it .c-btn:focus {
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--todo-it-primary-color);
@@ -280,7 +280,7 @@
 .c-tabs__nav__list {
   display: flex;
   margin: 0;
-  border-bottom: 0.125rem solid #000;
+  border-bottom: 0.1875rem solid #000;
 }
 
 .c-tabs__nav__item {
@@ -297,7 +297,7 @@
 
 .c-tabs__link {
   color: #000;
-  padding: 0.9375rem 1.875rem;
+  padding: 0.95625rem 1.875rem;
   font-size: 16px;
   text-decoration: none;
   display: block;

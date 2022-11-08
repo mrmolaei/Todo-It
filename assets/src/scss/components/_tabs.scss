@@ -5,7 +5,7 @@
 .c-tabs__nav__list {
   display: flex;
   margin: 0;
-  border-bottom: rem(2px) solid $black-color;
+  border-bottom: rem(3px) solid $black-color;
 }
 
 .c-tabs__nav__item {
@@ -23,7 +23,7 @@
 
 .c-tabs__link {
   color: #000;
-  padding: rem(15px 30px);
+  padding: rem(15.3px 30px);
   font-size: 16px;
   text-decoration: none;
   display: block;
