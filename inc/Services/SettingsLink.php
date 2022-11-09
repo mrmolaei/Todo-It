@@ -7,7 +7,7 @@ use Todo_It\BaseClass;
 
 class SettingsLink extends BaseClass
 {
-	private function settingsLink( $links )
+	public function settingsLink( $links )
 	{
 		$settings_link = '<a href="admin.php?page=my_plugin">Settings</a>';
 		array_push($links, $settings_link);
