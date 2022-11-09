@@ -26,7 +26,7 @@ if (class_exists('Todo_It\\TodoIt')) {
 	Todo_It\TodoIt::register_services();
 }
 
-//register_activation_hook( __FILE__, array( $todo_it_instance, 'activate' ) );
+register_activation_hook( __FILE__, 'Todo_It\\TodoIt::activate' );
 //
 //register_deactivation_hook( __FILE__, array( $todo_it_instance, 'deactivate' ) );
 //

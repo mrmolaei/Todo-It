@@ -43,7 +43,7 @@ class TodoIt extends BaseClass
 	}
 
 
-	function activate()
+	public static function activate()
 	{
 		Activate::activate();
 	}
