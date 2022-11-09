@@ -2,7 +2,7 @@
 
 use Todo_It\Helpers\Template;
 
-class test_template extends WP_UnitTestCase
+class testTemplate extends WP_UnitTestCase
 {
 	/**
 	 * @param $name

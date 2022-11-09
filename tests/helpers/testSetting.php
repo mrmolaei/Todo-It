@@ -2,7 +2,7 @@
 
 use Todo_It\Helpers\Settings;
 
-class test_settings extends WP_UnitTestCase
+class testSetting extends WP_UnitTestCase
 {
 	protected object $settings;
 

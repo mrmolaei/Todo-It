@@ -2,7 +2,7 @@
 
 use Todo_It\Helpers\Section;
 
-class test_section extends WP_UnitTestCase
+class testSection extends WP_UnitTestCase
 {
 	protected object $section;
 

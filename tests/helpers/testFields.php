@@ -2,7 +2,7 @@
 
 use Todo_It\Helpers\Field;
 
-class test_field extends WP_UnitTestCase
+class testField extends WP_UnitTestCase
 {
 	protected object $field;
 

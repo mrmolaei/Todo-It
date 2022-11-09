@@ -2,7 +2,7 @@
 
 use Todo_It\Helpers\Page;
 
-class test_page extends WP_UnitTestCase
+class testPage extends WP_UnitTestCase
 {
 	public array $pages;
 
