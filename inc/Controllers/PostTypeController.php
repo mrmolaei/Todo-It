@@ -78,7 +78,6 @@ class PostTypeController
 		return array();
 	}
 
-
 	public function tableNavOptions( $which )
 	{
 		return array();
@@ -88,7 +87,6 @@ class PostTypeController
 	{
 		$disable = true;
 
-		// filter...
 		return $disable;
 	}
 
@@ -101,12 +99,12 @@ class PostTypeController
 	public function register()
 	{
 		add_action( 'init', [ $this, 'registerPostType' ] );
+		add_action( 'disable_months_dropdown', '__return_true', 10, 2 );
+		add_action( 'manage_posts_extra_tablenav', [ $this, 'tableNavOptions' ], 20, 1 );
 		add_filter( 'post_row_actions', [ $this, 'removeActionRow' ], 10, 2 );
 		add_filter( 'month', [ $this, 'removeActionRow' ], 10, 2 );
 		add_filter( 'bulk_actions-edit-' . $this->postTypeName, [ $this, 'removeFormBulkActions' ] );
 		add_filter( 'views_edit-' . $this->postTypeName, [ $this, 'addCustomButtonsToPostsPage' ] );
-		add_action( 'manage_posts_extra_tablenav', [ $this, 'tableNavOptions' ], 20, 1 );
-		add_action( 'disable_months_dropdown', '__return_true', 10, 2 );
 		add_filter( 'manage_' . $this->postTypeName . '_posts_columns', [ $this, 'removeCheckboxesFromTable' ] );
 	}
 }
