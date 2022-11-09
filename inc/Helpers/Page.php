@@ -59,8 +59,8 @@ class Page
 			$this->page['menu_title'],
 			$this->page['capability'],
 			$this->page['menu_slug'],
-			$this->page['callback'],
-			$this->page['position'] );
+			(array_key_exists('callback', $this->page) ? $this->page['callback'] : ''),
+			(array_key_exists('callback', $this->page)  ? $this->page['position'] : null) );
 
 		return $this;
 	}

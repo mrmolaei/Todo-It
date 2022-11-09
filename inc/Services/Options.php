@@ -19,7 +19,6 @@ class Options
 		$this->settingsHelper = new Settings();
 		$this->sectionHelper  = new Section();
 		$this->fieldHelper    = new Field();
-		echo "Const";
 	}
 
 	public function registerSettings()

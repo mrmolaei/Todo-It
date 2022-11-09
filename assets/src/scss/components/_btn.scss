@@ -1,5 +1,6 @@
-.todo-it {
-  .c-btn {
+@mixin buttons {
+  .c-btn,
+  .page-title-action {
     line-height: 1.2;
     text-decoration: none;
     font-size: rem(16px);
@@ -22,7 +23,8 @@
     }
   }
 
-  .c-btn--ghost {
+  .c-btn--ghost,
+  .page-title-action {
     background-color: transparent;
     color: $black-color;
 
@@ -31,4 +33,15 @@
       color: $white-color;
     }
   }
+
+  .c-btn--sm,
+  .page-title-action {
+    font-size: rem(12px);
+    padding: rem(6px 10px);
+    min-width: rem(50px);
+  }
+}
+
+.todo-it {
+  @include buttons;
 }

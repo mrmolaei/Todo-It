@@ -1,0 +1,31 @@
+/*
+* Customize the Todo List page
+*/
+.todoit-plugin-page {
+
+  &.post-type-todoit-post {
+
+    .wrap {
+      background-color: $white-color;
+      border: rem(3px) solid $black-color;
+      padding: rem(16px);
+      font-family: $base-font-family, $alternative-font-family;
+    }
+
+    @include headings-normalize;
+    @include buttons;
+    @include table;
+    @include checkbox-radio;
+    @include inputs;
+    @include submit;
+
+    p.search-box {
+      display: flex;
+
+      input:not([type="checkbox"]):not([type="radio"]) {
+        padding: rem(8px 10px);
+        font-size: rem(12px);
+      }
+    }
+  }
+}

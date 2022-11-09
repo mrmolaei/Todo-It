@@ -18,7 +18,8 @@ class TodoIt extends BaseClass
 			Services\PluginPages::class,
 			Services\SettingsLink::class,
 			Services\Assets::class,
-			Services\Options::class
+			Services\Options::class,
+			Controllers\PostTypeController::class
 		];
 	}
 

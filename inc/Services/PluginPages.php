@@ -36,11 +36,7 @@ class PluginPages
 			'page_title' => __( 'Todo List' ),
 			'menu_title' => __( 'Todo List' ),
 			'capability' => 'manage_options',
-			'menu_slug'  => 'todoit',
-			'callback'   => function () {
-				Template::loadTemplate('admin');
-			},
-			'position'   => 1,
+			'menu_slug'  => 'edit.php?post_type=todoit-post',
 		];
 	}
 
@@ -71,7 +67,9 @@ class PluginPages
 	}
 
 	public function bodyClasses ( $classes ) {
-		if ( Page::inPluginsPage() ) {
+		global $pagenow;
+
+		if ( Page::inPluginsPage() || $pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'todoit-post') {
 			$classes .= ' todoit-plugin-page';
 		}
 

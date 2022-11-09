@@ -1,5 +1,39 @@
-.todo-it {
+@mixin checkbox-radio {
+  [type="checkbox"],
+  [type="radio"] {
+    @include high-contrast;
+    transition: $global-transition;
+    width: rem(20px);
+    height: rem(20px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
 
+    &:checked::before {
+      margin: 0;
+      content: '';
+      width: rem(12px);
+      height: rem(12px);
+      background-color: $black-color;
+    }
+
+    &:focus {
+      @include focusable-with-border;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  [type="checkbox"] {
+    border-radius: 0;
+  }
+}
+
+@mixin inputs {
   input:not([type="checkbox"]):not([type="radio"]),
   textarea,
   select {
@@ -27,39 +61,9 @@
       color: $black-color;
     }
   }
+}
 
-  [type="checkbox"],
-  [type="radio"] {
-    @include high-contrast;
-    transition: $global-transition;
-    width: rem(20px);
-    height: rem(20px);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    &:checked::before {
-      margin: 0;
-      content: '';
-      width: rem(12px);
-      height: rem(12px);
-      background-color: $black-color;
-    }
-
-    &:focus {
-      @include focusable-with-border;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-
-  [type="checkbox"] {
-    border-radius: 0;
-  }
-
+@mixin submit {
   input[type="submit"] {
     background-color: $black-color !important;
     color: $white-color;
@@ -74,6 +78,15 @@
       color: $white-color !important;
     }
   }
+}
+
+.todo-it {
+
+  @include inputs;
+  @include checkbox-radio;
+  @include submit;
+
+
 
   label {
     color: $black-color;

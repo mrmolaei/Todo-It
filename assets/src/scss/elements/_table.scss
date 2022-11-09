@@ -1,0 +1,62 @@
+@mixin table {
+  table {
+    @include high-contrast;
+
+    thead { /* thead --> */
+
+      th,
+      td {
+        color: $black-color;
+        border-bottom: rem(2px) solid $black-color;
+        font-weight: 700;
+        line-height: 1.8em;
+
+        a {
+          color: $black-color;
+          font-weight: 700;
+        }
+      }
+
+      td.check-column {
+        padding-top: 2px;
+      }
+    }/* <-- thead */
+
+    tbody { /* tbody --> */
+
+      th,
+      td {
+        color: $black-color;
+        border-bottom: rem(1px) solid $black-color;
+        font-size: rem(14px);
+        font-weight: 400;
+
+        a {
+          color: $black-color;
+          font-size: rem(13px) !important;
+          font-weight: 500;
+        }
+
+        strong {
+          margin-bottom: 0;
+        }
+      }
+    }/* <-- tbody */
+
+    tfoot { /* tfoot --> */
+
+      th,
+      td {
+        color: $black-color;
+        border-top: rem(2px) solid $black-color;
+        font-weight: 700;
+        line-height: 1.8em;
+
+        a {
+          color: $black-color;
+          font-weight: 700;
+        }
+      }
+    } /* <-- tfoot */
+  }
+}
