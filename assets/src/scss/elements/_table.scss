@@ -17,6 +17,10 @@
         }
       }
 
+      th.column-is-done {
+        width: rem(36px);
+      }
+
       td.check-column {
         padding-top: 2px;
       }
@@ -40,6 +44,10 @@
         strong {
           margin-bottom: 0;
         }
+      }
+
+      td.cell-center {
+        text-align: center;
       }
     }/* <-- tbody */
 

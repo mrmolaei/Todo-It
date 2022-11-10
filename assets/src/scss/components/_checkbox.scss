@@ -1,0 +1,40 @@
+@mixin checkbox-comp {
+  @include high-contrast;
+  transition: $global-transition;
+  width: rem(24px);
+  height: rem(24px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  font-family: 'dashicons';
+  line-height: 0.775;
+  font-size: 1.8rem;
+
+  &:checked {
+    border-color: $primary-color;
+  }
+
+  &:checked::before {
+    content: "\f15e";
+    color: $white-color;
+    margin: 0;
+    width: rem(22px);
+    height: rem(22px);
+    background-color: $primary-color;
+    text-indent: -0.12em;
+  }
+
+  &:focus {
+    @include focusable-with-border;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.c-checkbox {
+  @include checkbox-comp;
+}

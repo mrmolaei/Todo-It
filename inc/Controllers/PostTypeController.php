@@ -92,8 +92,14 @@ class PostTypeController
 
 	public function removeCheckboxesFromTable( $columns )
 	{
-		unset($columns['cb']);
-		return $columns;
+		$status_column['is_done'] = "<th class='column-is-done'>Done</th>";
+		$new_columns = array_merge($status_column, $columns);
+		unset($new_columns['cb']);
+		return $new_columns;
+	}
+
+	function addCustomCheckboxColumn ( $column_id, $post_id ) {
+		echo "<td class='is-done cell-center'><input class='c-checkbox' type='checkbox' name='is_done' data-post-id='$post_id' /></td>";
 	}
 
 	public function register()
@@ -106,5 +112,6 @@ class PostTypeController
 		add_filter( 'bulk_actions-edit-' . $this->postTypeName, [ $this, 'removeFormBulkActions' ] );
 		add_filter( 'views_edit-' . $this->postTypeName, [ $this, 'addCustomButtonsToPostsPage' ] );
 		add_filter( 'manage_' . $this->postTypeName . '_posts_columns', [ $this, 'removeCheckboxesFromTable' ] );
+		add_action( 'manage_posts_custom_column',[$this, 'addCustomCheckboxColumn'], 10, 2 );
 	}
 }

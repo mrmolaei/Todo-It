@@ -27,5 +27,9 @@
         font-size: rem(12px);
       }
     }
+
+    .c-checkbox {
+      @include checkbox-comp;
+    }
   }
 }
