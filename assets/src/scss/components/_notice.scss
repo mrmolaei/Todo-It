@@ -9,12 +9,14 @@
     color: $black-color;
     font-family: $base-font-family;
 
+
     &::before {
       content: '';
       margin-right: rem(16px);
       display: inline-block;
-      width: rem(3px);
+      width: rem(5px);
       background-color: $black-color;
+      border-left: rem(6px) solid $info-color;
     }
   }
 

@@ -52,11 +52,25 @@ class PostTypeController
 		);
 
 		$this->postType = $postTypeArgs;
+
+	}
+
+	public function saveEditor( $post_id )
+	{
+		if ( isset( $_POST['todo_info'] ) ) {
+		    $todo_info = $_POST['todo_info'];
+			$todo_info['status'] = 1;
+			update_post_meta( $post_id, 'todo_info', $todo_info );
+			return $post_id;
+		}
+		update_post_meta( $post_id, 'todo_info', ['status' => 0] );
 	}
 
 	public function registerPostType()
 	{
 		register_post_type( $this->postTypeName, $this->postType );
+
+
 	}
 
 	public function removeActionRow( $actions, $post )
@@ -83,7 +97,7 @@ class PostTypeController
 		return array();
 	}
 
-	function removeMonthDropdown( $disable, $post_type )
+	public function removeMonthDropdown( $disable, $post_type )
 	{
 		$disable = true;
 
@@ -92,26 +106,70 @@ class PostTypeController
 
 	public function removeCheckboxesFromTable( $columns )
 	{
-		$status_column['is_done'] = "<th class='column-is-done'>Done</th>";
-		$new_columns = array_merge($status_column, $columns);
-		unset($new_columns['cb']);
+		//unset( $columns['cb'] );
+		$new_columns['is_done'] = "<th class='column-is-done'>Done</th>";
+		$new_columns            = array_merge( $new_columns, $columns );
+
 		return $new_columns;
 	}
 
-	function addCustomCheckboxColumn ( $column_id, $post_id ) {
-		echo "<td class='is-done cell-center'><input class='c-checkbox' type='checkbox' name='is_done' data-post-id='$post_id' /></td>";
+	public function addCustomCheckboxColumn( $column_id, $post_id )
+	{
+		echo "<td class='$column_id cell-center'><input class='c-checkbox' type='checkbox' name='is_done' data-post-id='$post_id' /></td>";
+	}
+
+	public function newPostMetaBoxes()
+	{
+
+		remove_meta_box( 'submitdiv', 'todoit-post', 'side' );
+	}
+
+	public function dequeueAutoSaveScript()
+	{
+		if ( $this->postTypeName == get_post_type() ) {
+			wp_dequeue_script( 'autosave' );
+		}
+	}
+
+	function addFieldsAfterTitle()
+	{
+		$cuurent_screen = get_current_screen();
+		$action_value   = ( $cuurent_screen->action == 'add' ? 'Publish' : 'Update' );
+
+		if ( $cuurent_screen->post_type === 'todoit-post' ) {
+			$todo_info = get_post_meta( get_the_ID(), 'todo_info', true );
+			$todo_status = 0;
+			if (isset($todo_info['status']) && $todo_info['status'] == 1) {
+				$todo_status = 1;
+			}
+			?>
+            <div class="checkbox">
+                <input type="checkbox" <?php checked($todo_status , 1, true ) ?> class="c-checkbox js-todo-status" name="todo_info[status]" value="1"/>
+            </div>
+            <div class="submit-wrap">
+                <input name="original_publish" type="hidden" id="original_publish" value="' . $action_value . '">
+                <input  type="submit" name="publish" id="publish"
+                       class="button todoit-submit-button button-primary button-large"
+                       value="<?php _e( ($cuurent_screen->action == '' ? 'Update': 'Add'), 'todo-it' ); ?>">
+            </div>
+			<?php
+		}
 	}
 
 	public function register()
 	{
 		add_action( 'init', [ $this, 'registerPostType' ] );
 		add_action( 'disable_months_dropdown', '__return_true', 10, 2 );
-		add_action( 'manage_posts_extra_tablenav', [ $this, 'tableNavOptions' ], 20, 1 );
-		add_filter( 'post_row_actions', [ $this, 'removeActionRow' ], 10, 2 );
-		add_filter( 'month', [ $this, 'removeActionRow' ], 10, 2 );
-		add_filter( 'bulk_actions-edit-' . $this->postTypeName, [ $this, 'removeFormBulkActions' ] );
-		add_filter( 'views_edit-' . $this->postTypeName, [ $this, 'addCustomButtonsToPostsPage' ] );
-		add_filter( 'manage_' . $this->postTypeName . '_posts_columns', [ $this, 'removeCheckboxesFromTable' ] );
-		add_action( 'manage_posts_custom_column',[$this, 'addCustomCheckboxColumn'], 10, 2 );
+		//add_action( 'manage_posts_extra_tablenav', [ $this, 'tableNavOptions' ], 20, 1 );
+		//add_filter( 'post_row_actions', [ $this, 'removeActionRow' ], 10, 2 );
+		//add_filter( 'month', [ $this, 'removeActionRow' ], 10, 2 );
+		//add_filter( 'bulk_actions-edit-' . $this->postTypeName, [ $this, 'removeFormBulkActions' ] );
+		//add_filter( 'views_edit-' . $this->postTypeName, [ $this, 'addCustomButtonsToPostsPage' ] );
+		//add_filter( 'manage_' . $this->postTypeName . '_posts_columns', [ $this, 'removeCheckboxesFromTable' ] );
+		//add_action( 'manage_posts_custom_column', [ $this, 'addCustomCheckboxColumn' ], 10, 2 );
+		add_action( 'admin_head', [ $this, 'newPostMetaBoxes' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'dequeueAutoSaveScript' ] );
+		add_action( 'edit_form_after_title', [ $this, 'addFieldsAfterTitle' ] );
+		add_action( 'save_post', [ $this, 'saveEditor' ] );
 	}
 }

@@ -74,7 +74,7 @@
       color: $white-color !important;
     }
 
-    &:focus {
+    &:focus, &:disabled {
       color: $white-color !important;
     }
   }

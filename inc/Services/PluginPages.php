@@ -68,8 +68,8 @@ class PluginPages
 
 	public function bodyClasses ( $classes ) {
 		global $pagenow;
-
-		if ( Page::inPluginsPage() || $pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'todoit-post') {
+		$current_screen = get_current_screen();
+		if ( Page::inPluginsPage() || $pagenow == 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'todoit-post' || $pagenow == 'post-new.php' && isset($_GET['post_type']) && $_GET['post_type'] == 'todoit-post' || $pagenow == 'post.php' && $current_screen->post_type == 'todoit-post') {
 			$classes .= ' todoit-plugin-page';
 		}
 
